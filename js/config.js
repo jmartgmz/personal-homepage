@@ -3,17 +3,8 @@
  * This file contains all user-configurable settings for the startpage
  */
 
-// Navigation menu categories and links (Primary set)
-const navigationConfig = {
-  // University category
-  university: {
-    title: "University",
-    color: "blue",
-    links: [
-      { name: "Canvas", url: "https://udel.instructure.com" },
-      { name: "UDSIS", url: "https://my.udel.edu" },
-    ]
-  },
+// Page 1: Primary Services
+const page1Config = {
   // Email and storage category
   protonServices: {
     title: "Proton",
@@ -33,7 +24,7 @@ const navigationConfig = {
     ]
   },
   // Server category
-    server: {
+  server: {
     title: "Server",
     color: "blue",
     links: [
@@ -43,14 +34,22 @@ const navigationConfig = {
   },
 };
 
-// Alternate navigation set (shows when toggled)
-const alternateNavigationConfig = {
+// Page 2: Learning & Work
+const page2Config = {
+  // University category
+  university: {
+    title: "University",
+    color: "blue",
+    links: [
+      { name: "Canvas", url: "https://udel.instructure.com" },
+      { name: "UDSIS", url: "https://my.udel.edu" },
+    ]
+  },
   // Learning category
   Learning: {
     title: "Learning",
     color: "blue",
     links: [
-      { name: "Odin", url: "https://www.theodinproject.com/dashboard" },
       { name: "Renshuu", url: "https://www.renshuu.org/me" },
       { name: "Neetcode", url: "https://neetcode.io/practice" },
     ]
@@ -60,7 +59,6 @@ const alternateNavigationConfig = {
     title: "LLM",
     color: "blue",
     links: [
-      { name: "GPT", url: "https://chatgpt.com" },
       { name: "Claude", url: "https://claude.ai" },
       { name: "Gemini", url: "https://gemini.google.com/app"}
     ]
@@ -72,20 +70,37 @@ const alternateNavigationConfig = {
     links: [
       { name: "Github", url: "https://github.com/jmartgmz" },
       { name: "Indeed", url: "https://secure.indeed.com" },
-      { name: "Simplify", url: "https://simplify.jobs/dashboard"}
+    ]
+  },
+};
+
+// Page 3: Tracking
+const page3Config = {
+  // Tracking Category
+  Tracking: {
+    title: "Tracking",
+    color: "blue",
+    links: [
+      { name: "AniList", url: "https://anilist.co/" },
+      { name: "Letterboxd", url: "https://letterboxd.com/" },
+      { name: "RetroAchieve", url: "https://retroachievements.org/" }
     ]
   },
   // Improvement Category
-    Improve: {
-    title: "Improve",
+  Improvement: {
+    title: "Improvement",
     color: "blue",
     links: [
-      { name: "Anki", url: "https://ankiweb.net" },
       { name: "Youtube", url: "https://www.youtube.com/" },
+      { name: "Neetcode", url: "https://neetcode.io/practice" },
       { name: "Monkeytype", url: "https://monkeytype.com/" },
     ]
   },
 };
+
+// Keep old names for backward compatibility
+const navigationConfig = page1Config;
+const alternateNavigationConfig = page2Config;
 
 // Global appearance and behavior settings
 const globalSettings = {
@@ -109,5 +124,5 @@ const globalSettings = {
 
 // Export configuration for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { navigationConfig, alternateNavigationConfig, globalSettings };
+  module.exports = { navigationConfig, alternateNavigationConfig, page1Config, page2Config, page3Config, globalSettings };
 }

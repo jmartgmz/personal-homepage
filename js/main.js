@@ -3,8 +3,10 @@
  * Initializes all functionality and sets up event listeners
  */
 
-// Track which navigation set is currently active
-let isAlternateNavigation = false;
+// Track which page is currently active (0 = page 1, 1 = page 2, 2 = page 3)
+let currentPage = 0;
+const pageConfigs = [page1Config, page2Config, page3Config];
+const pageSymbols = ['<', '-', '>'];
 
 /**
  * Generates navigation menu from configuration
@@ -13,8 +15,8 @@ function generateNavigation(configToUse = null) {
     const navElement = document.getElementById('navigation');
     if (!navElement) return;
     
-    // Use provided config or default based on current state
-    const config = configToUse || (isAlternateNavigation ? alternateNavigationConfig : navigationConfig);
+    // Use provided config or default based on current page
+    const config = configToUse || pageConfigs[currentPage];
     if (!config) return;
     
     // Clear existing navigation
@@ -49,18 +51,18 @@ function generateNavigation(configToUse = null) {
 }
 
 /**
- * Toggles between navigation sets
+ * Cycles through navigation pages
  */
 function toggleNavigation() {
-    isAlternateNavigation = !isAlternateNavigation;
+    currentPage = (currentPage + 1) % 3;
     generateNavigation();
     
-    // Update button appearance to indicate current state
+    // Update button appearance to indicate current page
     const toggleBtn = document.getElementById('nav-toggle-btn');
     if (toggleBtn) {
-        toggleBtn.textContent = isAlternateNavigation ? '<' : '>';
+        toggleBtn.textContent = pageSymbols[currentPage];
         toggleBtn.setAttribute('aria-label', 
-            isAlternateNavigation ? 'Switch to primary navigation' : 'Switch to alternate navigation'
+            `Page ${currentPage + 1} of 3 - Click to switch to page ${((currentPage + 1) % 3) + 1}`
         );
     }
 }
